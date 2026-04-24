@@ -7,4 +7,4 @@ resources:
 images:
   - name: registry.144.91.77.245.sslip.io/deepseekv4flash
     newName: registry.144.91.77.245.sslip.io/deepseekv4flash
-    newTag: 8e56d0f8cd4552aab1b11cd64961e1d08609f3ff
+    newTag: 86ba2761d95eb8f76a3e06232bf13d6947e29b40
