@@ -1,0 +1,11 @@
+# Signal Lattice
+
+Signal Lattice treats speed as a field phenomenon rather than a burst effect. Form should feel tensioned, directional, and deliberate, as if every line has been tuned to carry momentum without collapsing into noise. The work must look meticulously crafted, not casually futuristic. Empty space is not absence; it is pressure held in reserve. Shapes need to appear machined, aligned, and refined through repeated passes by someone working at master level.
+
+Color should stay cold and precise. Dense graphite, deep midnight blue, ice cyan, and a restrained electric mint create a system that feels fast without becoming loud. Contrast comes from calibration, not saturation. Surfaces should suggest polished technical glass, brushed alloy, and faint screen phosphor. Every transition must feel painstakingly balanced, with the level of care associated with elite interface design and museum-grade print craft.
+
+Scale and rhythm come from layered recurrence. Large structural forms establish confidence; thin tracking lines, small markers, and disciplined interruptions provide cadence. Repetition should never feel decorative. It should resemble an instrument panel or experimental diagram that has been refined for countless hours until each interval feels inevitable. The final composition must communicate deep expertise through proportion alone.
+
+Typography acts as a precision component inside the composition. Letterforms should be extended, technical, and sharply controlled, with body text remaining quiet and supportive. Words are sparse and purposeful. Any label, code fragment, or caption should behave like an alignment mark within the visual system. The result must feel painstakingly edited, with no loose spacing, no accidental overlap, and no gesture that reads as generic or improvised.
+
+Balance comes from the conversation between containment and release. Frames, rings, and grid traces hold the energy in place while one directional element cuts through them with intent. That cutting element is the conceptual thread: a flash path captured mid-vector. The finished work should feel as though a top-tier designer labored over every edge and interval until the whole artifact became crisp, inevitable, and quietly authoritative.

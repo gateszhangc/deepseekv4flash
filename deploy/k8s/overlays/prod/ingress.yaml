@@ -1,0 +1,54 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: deepseekv4flash
+  annotations:
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/issue-temporary-certificate: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+    - secretName: deepseekv4flash-live-tls
+      hosts:
+        - deepseekv4flash.lol
+        - www.deepseekv4flash.lol
+  rules:
+    - host: deepseekv4flash.lol
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: deepseekv4flash
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: deepseekv4flash-www-redirect
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/permanent-redirect: https://deepseekv4flash.lol
+    nginx.ingress.kubernetes.io/permanent-redirect-code: "308"
+spec:
+  ingressClassName: nginx
+  tls:
+    - secretName: deepseekv4flash-live-tls
+      hosts:
+        - www.deepseekv4flash.lol
+  rules:
+    - host: www.deepseekv4flash.lol
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: deepseekv4flash
+                port:
+                  number: 80

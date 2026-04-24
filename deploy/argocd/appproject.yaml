@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: deepseekv4flash
+  namespace: argocd
+spec:
+  description: DeepSeek V4 Flash static site managed from the application repository.
+  sourceRepos:
+    - https://github.com/gateszhangc/deepseekv4flash.git
+  destinations:
+    - namespace: deepseekv4flash
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: "*"
+      kind: "*"
+  namespaceResourceWhitelist:
+    - group: "*"
+      kind: "*"

@@ -2,7 +2,7 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
-const host = process.env.HOSTNAME || "0.0.0.0";
+const host = process.env.HOST || process.env.HOSTNAME || "0.0.0.0";
 const port = Number(process.env.PORT || 3000);
 const root = __dirname;
 
@@ -18,7 +18,6 @@ const contentTypes = {
   ".txt": "text/plain; charset=utf-8",
   ".ttf": "font/ttf",
   ".webmanifest": "application/manifest+json; charset=utf-8",
-  ".webp": "image/webp",
   ".xml": "application/xml; charset=utf-8"
 };
 

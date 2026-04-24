@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: deepseekv4flash
+  labels:
+    app.kubernetes.io/name: deepseekv4flash
+    app.kubernetes.io/part-of: deepseekv4flash

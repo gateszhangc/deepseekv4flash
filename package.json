@@ -1,12 +1,15 @@
 {
-  "name": "artemis-2-wallpaper",
+  "name": "deepseekv4flash",
   "version": "1.0.0",
   "private": true,
-  "description": "Static Artemis II wallpaper site built from publicly released NASA imagery.",
+  "description": "Static DeepSeek V4 Flash keyword site.",
   "scripts": {
     "start": "node server.js",
     "test": "playwright test",
-    "test:browser": "playwright test"
+    "test:browser": "playwright test",
+    "test:release": "playwright test tests/release.spec.js",
+    "smoke:live": "PLAYWRIGHT_BASE_URL=https://deepseekv4flash.lol playwright test tests/home.spec.js",
+    "brand": "./scripts/generate_brand_assets.sh"
   },
   "devDependencies": {
     "@playwright/test": "^1.54.2"

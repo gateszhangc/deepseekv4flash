@@ -1,41 +1,74 @@
 const topbar = document.querySelector("[data-topbar]");
-const filterButtons = Array.from(document.querySelectorAll(".filter-button"));
-const wallpaperCards = Array.from(document.querySelectorAll(".wallpaper-card"));
-const resultsCount = document.querySelector("[data-results-count]");
-const yearNode = document.querySelector("#current-year");
+const revealItems = document.querySelectorAll(".reveal");
+const navLinks = document.querySelectorAll("[data-nav-target]");
+const sections = document.querySelectorAll("[data-section]");
+const year = document.getElementById("year");
 
-const updateResults = (filter) => {
-  let visible = 0;
-
-  wallpaperCards.forEach((card) => {
-    const tags = (card.dataset.tags || "").split(" ");
-    const matches = filter === "all" || tags.includes(filter);
-    card.hidden = !matches;
-    if (matches) visible += 1;
-  });
-
-  if (resultsCount) {
-    resultsCount.textContent = `Showing ${visible} wallpaper${visible === 1 ? "" : "s"}`;
-  }
-};
-
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    filterButtons.forEach((entry) => entry.classList.remove("is-active"));
-    button.classList.add("is-active");
-    updateResults(button.dataset.filter || "all");
-  });
-});
-
-if (yearNode) {
-  yearNode.textContent = new Date().getFullYear();
+if (year) {
+  year.textContent = String(new Date().getFullYear());
 }
 
-const handleScroll = () => {
-  if (!topbar) return;
-  topbar.classList.toggle("is-scrolled", window.scrollY > 12);
+const syncTopbar = () => {
+  if (!topbar) {
+    return;
+  }
+
+  topbar.classList.toggle("is-scrolled", window.scrollY > 18);
 };
 
-window.addEventListener("scroll", handleScroll, { passive: true });
-handleScroll();
-updateResults("all");
+syncTopbar();
+window.addEventListener("scroll", syncTopbar, { passive: true });
+
+if ("IntersectionObserver" in window) {
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        }
+      }
+    },
+    {
+      threshold: 0.18
+    }
+  );
+
+  for (const item of revealItems) {
+    revealObserver.observe(item);
+  }
+
+  const navObserver = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (!visible) {
+        return;
+      }
+
+      const sectionName = visible.target.getAttribute("data-section");
+
+      for (const link of navLinks) {
+        const isCurrent = link.getAttribute("data-nav-target") === sectionName;
+        if (isCurrent) {
+          link.setAttribute("aria-current", "location");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      }
+    },
+    {
+      rootMargin: "-25% 0px -45% 0px",
+      threshold: [0.2, 0.4, 0.6]
+    }
+  );
+
+  for (const section of sections) {
+    navObserver.observe(section);
+  }
+} else {
+  for (const item of revealItems) {
+    item.classList.add("is-visible");
+  }
+}

@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Host: deepseekv4flash.lol
 
-Sitemap: https://artemis-2-wallpaper.lol/sitemap.xml
+Sitemap: https://deepseekv4flash.lol/sitemap.xml
