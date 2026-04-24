@@ -51,6 +51,8 @@ Cloudflare DNS cutover should replace the Porkbun parked records with:
 - `A @ -> 144.91.78.201`
 - `CNAME www -> deepseekv4flash.lol`
 
+TLS issuance uses `cert-manager` with `ClusterIssuer/letsencrypt-prod-cloudflare` so production certs come from Cloudflare DNS-01 rather than HTTP-01 path mutations on the app ingress.
+
 Use the `webapp-launch-analytics` scripts as the source of truth:
 
 ```bash

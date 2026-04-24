@@ -27,9 +27,10 @@ test.describe("DeepSeek V4 Flash release assets", () => {
     expect(kustomization).toContain("namespace: deepseekv4flash");
     expect(kustomization).toContain("newName: registry.144.91.77.245.sslip.io/deepseekv4flash");
     expect(kustomization).toMatch(/newTag: (bootstrap|[0-9a-f]{40})/);
-    expect(ingress).toContain("cert-manager.io/cluster-issuer: letsencrypt-prod");
+    expect(ingress).toContain("cert-manager.io/cluster-issuer: letsencrypt-prod-cloudflare");
     expect(ingress).toContain('cert-manager.io/issue-temporary-certificate: "true"');
     expect(ingress).not.toContain("acme.cert-manager.io/http01-edit-in-place");
+    expect(ingress.match(/cert-manager\.io\/cluster-issuer/g) || []).toHaveLength(1);
 
     expect(appProject).toContain("name: deepseekv4flash");
     expect(appProject).toContain("https://github.com/gateszhangc/deepseekv4flash.git");

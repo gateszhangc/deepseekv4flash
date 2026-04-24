@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: deepseekv4flash
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
+    cert-manager.io/cluster-issuer: letsencrypt-prod-cloudflare
     cert-manager.io/issue-temporary-certificate: "true"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
@@ -30,7 +30,6 @@ kind: Ingress
 metadata:
   name: deepseekv4flash-www-redirect
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/permanent-redirect: https://deepseekv4flash.lol
     nginx.ingress.kubernetes.io/permanent-redirect-code: "308"
