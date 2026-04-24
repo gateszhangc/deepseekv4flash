@@ -7,6 +7,7 @@ test.describe("DeepSeek V4 Flash release assets", () => {
     const root = path.resolve(__dirname, "..");
     const workflow = fs.readFileSync(path.join(root, ".github/workflows/build-and-release.yml"), "utf8");
     const kustomization = fs.readFileSync(path.join(root, "deploy/k8s/overlays/prod/kustomization.yaml"), "utf8");
+    const ingress = fs.readFileSync(path.join(root, "deploy/k8s/overlays/prod/ingress.yaml"), "utf8");
     const appProject = fs.readFileSync(path.join(root, "deploy/argocd/appproject.yaml"), "utf8");
     const application = fs.readFileSync(path.join(root, "deploy/argocd/application.yaml"), "utf8");
     const checklist = fs.readFileSync(path.join(root, "deploy/launch-checklist.md"), "utf8");
@@ -26,6 +27,9 @@ test.describe("DeepSeek V4 Flash release assets", () => {
     expect(kustomization).toContain("namespace: deepseekv4flash");
     expect(kustomization).toContain("newName: registry.144.91.77.245.sslip.io/deepseekv4flash");
     expect(kustomization).toMatch(/newTag: (bootstrap|[0-9a-f]{40})/);
+    expect(ingress).toContain("cert-manager.io/cluster-issuer: letsencrypt-prod");
+    expect(ingress).toContain('cert-manager.io/issue-temporary-certificate: "true"');
+    expect(ingress).not.toContain("acme.cert-manager.io/http01-edit-in-place");
 
     expect(appProject).toContain("name: deepseekv4flash");
     expect(appProject).toContain("https://github.com/gateszhangc/deepseekv4flash.git");
